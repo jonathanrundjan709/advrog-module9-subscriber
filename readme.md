@@ -30,3 +30,13 @@ Jadi, `guest:guest@localhost:5672` berarti aplikasi akan terhubung ke server Rab
 Berikut adalah hasil ketika subscriber menerima message dari publisher:
 
 ![Hasil subscriber menerima message dari publisher](assets/subscriber-output.png)
+
+## Simulasi Slow Subscriber
+
+Berikut adalah hasil monitoring RabbitMQ ketika subscriber dibuat lebih lambat dalam memproses message:
+
+![Monitoring RabbitMQ saat slow subscriber](assets/slow-subscriber-queue.png)
+
+Pada screenshot tersebut, jumlah queued messages sempat naik hingga sekitar 25 message. Angka ini muncul karena publisher dapat terus mengirim event ke message broker, sedangkan subscriber memproses message secara lebih lambat satu per satu.
+
+Program publisher mengirim 5 message setiap kali dijalankan. Jika publisher dijalankan beberapa kali dalam waktu singkat ketika subscriber sedang lambat, message baru akan masuk lebih cepat daripada kemampuan subscriber untuk memprosesnya. Akibatnya, message menumpuk sementara di queue RabbitMQ. Setelah subscriber selesai memproses message-message tersebut, jumlah queue turun kembali ke 0.
