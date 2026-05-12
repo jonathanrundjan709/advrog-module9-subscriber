@@ -24,3 +24,9 @@ Connection string tersebut adalah alamat yang digunakan aplikasi untuk terhubung
 - `5672` adalah port default yang digunakan RabbitMQ untuk koneksi AMQP.
 
 Jadi, `guest:guest@localhost:5672` berarti aplikasi akan terhubung ke server RabbitMQ yang berjalan secara lokal pada port `5672`, dengan username `guest` dan password `guest`.
+
+## Dokumentasi
+
+Berikut adalah hasil ketika subscriber menerima message dari publisher:
+
+![Hasil subscriber menerima message dari publisher](assets/subscriber-output.png)
